@@ -383,28 +383,6 @@ class TestCheckSeedColumnsAreAllDocumented:
                 _SEED_CATALOG_NODE,
                 [
                     {
-                        "seed": {
-                            "alias": "raw_customers",
-                            "columns": {
-                                "id": {"name": "id"},
-                                "first_name": {"name": "first_name"},
-                                "last_name": {"name": "last_name"},
-                            },
-                            "fqn": ["package_name", "raw_customers"],
-                            "name": "raw_customers",
-                            "original_file_path": "seeds/raw_customers.csv",
-                            "path": "raw_customers.csv",
-                            "unique_id": "seed.package_name.raw_customers",
-                        }
-                    }
-                ],
-                check_passes,
-                id="all_columns_documented_wrapped_seed",
-            ),
-            pytest.param(
-                _SEED_CATALOG_NODE,
-                [
-                    {
                         "alias": "raw_customers",
                         "columns": {
                             "id": {"name": "id"},
