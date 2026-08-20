@@ -154,7 +154,7 @@ class TestMetadataWrappingDemo:
         )
 
     def test_fixed_check_still_fails_on_genuinely_undocumented_column(self):
-        """The fix doesn't mask real findings: a truly undocumented column
+        """The fix doesn't mask real findings: a truly undocumented column.
 
         (present in the catalog node but absent from the source's `.yml`
         file) still fails the check as expected, even when `ctx.sources` is
@@ -175,4 +175,3 @@ class TestMetadataWrappingDemo:
             ctx_sources=[{"source": manifest_source_missing_status}],
             ctx_manifest_obj={"metadata": {"adapter_type": "snowflake"}},
         )
-

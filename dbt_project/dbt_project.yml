@@ -14,6 +14,9 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+on-run-start:
+  - "CREATE SCHEMA IF NOT EXISTS dummy_source;"
+  - "CREATE TABLE IF NOT EXISTS dummy_source.customers AS SELECT * FROM read_csv('./dbt_project/seeds/raw_customers.csv');"
 
 tests:
   dbt_bouncer_test_project:
