@@ -32,6 +32,7 @@ def check_source_columns_are_all_documented(
         ```
 
     """
+
     # `ctx.sources` holds SourceWrapper objects (each nesting the real source
     # under a `.source` attribute) in production, but direct DictProxy objects
     # in unit tests (see the matching comment in

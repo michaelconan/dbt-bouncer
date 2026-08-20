@@ -14,6 +14,13 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+on-run-start:
+  - "CREATE SCHEMA IF NOT EXISTS dummy_source;"
+  - "CREATE TABLE IF NOT EXISTS dummy_source.customers AS SELECT * FROM read_csv('./dbt_project/seeds/raw_customers.csv');"
+  - "CREATE SCHEMA IF NOT EXISTS sources_that_dont_really_exist;"
+  - "CREATE TABLE IF NOT EXISTS sources_that_dont_really_exist.source_1 AS SELECT * FROM read_csv('./dbt_project/seeds/raw_customers.csv');"
+  - "CREATE TABLE IF NOT EXISTS sources_that_dont_really_exist.source_2 AS SELECT * FROM read_csv('./dbt_project/seeds/raw_orders.csv');"
+  - "CREATE TABLE IF NOT EXISTS sources_that_dont_really_exist.\"Non_Conforming_Name\" AS SELECT * FROM read_csv('./dbt_project/seeds/raw_payments.csv');"
 
 tests:
   dbt_bouncer_test_project:
