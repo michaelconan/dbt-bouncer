@@ -12,9 +12,9 @@ sources:
 
     tables:
       - name: source_1
+        identifier: source_1
         description: This is the first source that doesn't exist.
         config:
-          external_location: "read_csv('./dbt_project/seeds/raw_customers.csv')"
           tags:
             - example_tag
           meta:
@@ -34,9 +34,9 @@ sources:
           - name: first_name
           - name: last_name
       - name: source_2
+        identifier: source_2
         description: This is the second source that doesn't exist.
         config:
-          external_location: "read_csv('./dbt_project/seeds/raw_orders.csv')"
           tags:
             - example_tag
           meta:
@@ -53,8 +53,8 @@ sources:
           - name: order_date
           - name: status
       - name: Non_Conforming_Name
+        identifier: Non_Conforming_Name
         config:
-          external_location: "read_csv('./dbt_project/seeds/raw_payments.csv')"
           meta:
             dbt-bouncer:
               skip_checks:
