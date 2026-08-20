@@ -14,6 +14,7 @@ sources:
       - name: source_1
         description: This is the first source that doesn't exist.
         config:
+          external_location: "read_csv('./dbt_project/seeds/raw_customers.csv')"
           tags:
             - example_tag
           meta:
@@ -26,9 +27,16 @@ sources:
                 @anna
             maturity: high
             owner: Anna
+        columns:
+          - name: id
+            tests:
+              - not_null
+          - name: first_name
+          - name: last_name
       - name: source_2
         description: This is the second source that doesn't exist.
         config:
+          external_location: "read_csv('./dbt_project/seeds/raw_orders.csv')"
           tags:
             - example_tag
           meta:
@@ -37,8 +45,16 @@ sources:
               slack: |
                 @therealanna
             owner: Annabelle
+        columns:
+          - name: id
+            tests:
+              - not_null
+          - name: user_id
+          - name: order_date
+          - name: status
       - name: Non_Conforming_Name
         config:
+          external_location: "read_csv('./dbt_project/seeds/raw_payments.csv')"
           meta:
             dbt-bouncer:
               skip_checks:
@@ -47,3 +63,10 @@ sources:
                 - check_source_has_tags
                 - check_source_names
               reason: This is a source that specifically tests for this feature.
+        columns:
+          - name: id
+            tests:
+              - not_null
+          - name: order_id
+          - name: payment_method
+          - name: amount

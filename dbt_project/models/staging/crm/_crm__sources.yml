@@ -30,3 +30,5 @@ sources:
           - name: id
             tests:
               - not_null
+          - name: first_name
+          - name: last_name
