@@ -78,22 +78,7 @@ def check_seed_columns_are_all_documented(
     if catalog_node.unique_id is not None and catalog_node.unique_id.startswith(
         "seed."
     ):
-        # `ctx.seeds` holds wrapper objects nesting the real seed under a
-        # `.seed` attribute in production, but direct DictProxy objects in
-        # unit tests (mirrors the equivalent `.source` wrapping fixed in
-        # `check_catalog_sources.py`). DictProxy returns `None` (not
-        # AttributeError) for missing attributes, so check `is not None`
-        # rather than relying on `getattr`'s default.
-        def _unwrap_seed(s):
-            inner = getattr(s, "seed", None)
-            return inner if inner is not None else s
-
-        seed = next(
-            inner
-            for s in ctx.seeds
-            for inner in [_unwrap_seed(s)]
-            if getattr(inner, "unique_id", None) == catalog_node.unique_id
-        )
+        seed = next(s for s in ctx.seeds if s.unique_id == catalog_node.unique_id)
 
         if ctx.manifest_obj.manifest.metadata.adapter_type in ["snowflake"]:
             case_sensitive = False

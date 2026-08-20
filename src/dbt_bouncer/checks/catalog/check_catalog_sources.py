@@ -32,23 +32,7 @@ def check_source_columns_are_all_documented(
         ```
 
     """
-
-    # `ctx.sources` holds SourceWrapper objects (each nesting the real source
-    # under a `.source` attribute) in production, but direct DictProxy objects
-    # in unit tests (see the matching comment in
-    # `check_framework/context.py::CheckContext.__post_init__`). DictProxy
-    # returns `None` (not AttributeError) for missing attributes, so check
-    # `is not None` rather than relying on `getattr`'s default.
-    def _unwrap_source(s):
-        inner = getattr(s, "source", None)
-        return inner if inner is not None else s
-
-    source = next(
-        inner
-        for s in ctx.sources
-        for inner in [_unwrap_source(s)]
-        if getattr(inner, "unique_id", None) == catalog_source.unique_id
-    )
+    source = next(s for s in ctx.sources if s.unique_id == catalog_source.unique_id)
 
     if ctx.manifest_obj.manifest.metadata.adapter_type in ["snowflake"]:
         case_sensitive = False

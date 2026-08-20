@@ -223,9 +223,7 @@ def _assemble_checks_to_run(ctx: "BouncerContext") -> list[CheckToRun]:
     meta_by_unique_id: dict[str, Any] = {}
     for resource_key in ["models", "seeds", "snapshots", "sources"]:
         for resource in resource_map.get(resource_key, []):
-            inner_attr = resource_key.rstrip(
-                "s"
-            )  # "models" -> "model", "sources" -> "source"
+            inner_attr = resource_key.rstrip("s")  # "models" -> "model", "sources" -> "source"
             node = getattr(resource, inner_attr, None)
             if node is not None and hasattr(node, "unique_id"):
                 try:

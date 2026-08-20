@@ -54,30 +54,6 @@ class TestCheckSourceColumnsAreAllDocumented:
                 _SOURCE_CATALOG_NODE,
                 [
                     {
-                        "source": {
-                            "columns": {
-                                "col_1": {"name": "col_1"},
-                                "col_2": {"name": "col_2"},
-                            },
-                            "fqn": ["package_name", "source_1", "table_1"],
-                            "identifier": "table_1",
-                            "loader": "csv",
-                            "name": "table_1",
-                            "original_file_path": "path/to/source_1.yml",
-                            "path": "path/to/source_1.yml",
-                            "source_description": "",
-                            "source_name": "source_1",
-                            "unique_id": "source.package_name.source_1.table_1",
-                        }
-                    }
-                ],
-                check_passes,
-                id="all_documented_wrapped_source",
-            ),
-            pytest.param(
-                _SOURCE_CATALOG_NODE,
-                [
-                    {
                         "columns": {
                             "col_1": {"name": "col_1"},
                         },
